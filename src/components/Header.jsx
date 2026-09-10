@@ -69,12 +69,12 @@ const Header = () => {
       </div>
 
       <span
-      className="
-      text-white
+      className={`
+
       text-[15px]
       font-semibold
       tracking-[-0.02em]
-      "
+      ${isFixed ? "text-[#1f2b49]" : "text-white"}`}
       >
       RightMarkz
       </span>
