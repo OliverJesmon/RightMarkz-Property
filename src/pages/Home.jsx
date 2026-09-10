@@ -1,7 +1,7 @@
 import React, { useEffect, useRef,useState } from 'react';
 import { motion, useInView,AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight,ChevronDown, Home, Key, TrendingUp, Signpost, Mountain, Lightbulb, Building2,Search,MapPin, Mic } from 'lucide-react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import p5 from 'p5';
 import Typed from 'typed.js'
 const quickCities = ['Bangalore', 'Chennai', 'Coimbatore', 'Faridabad', 'Ghaziabad', 'Gurgaon', 'Hyderabad', 'Indore'];
@@ -353,6 +353,7 @@ function Banner() {
 }
 
 function Hero() {
+  const navigate=useNavigate();
   const [activeSearchTab, setActiveSearchTab] = useState('Buy');
   const [propertyTypeOpen, setPropertyTypeOpen] = useState(false);
   const [selectedPropertyType, setSelectedPropertyType] = useState('All Residential');
@@ -524,7 +525,7 @@ function Hero() {
     </div>
 
     {/* Search Button */}
-    <button className="bg-gold hover:bg-navy text-white px-6 py-3.5 text-sm font-semibold flex items-center justify-center gap-2 transition-colors shrink-0 rounded-r-lg active:scale-[0.98] touch-manipulation md:min-h-[48px]">
+    <button className="bg-gold hover:bg-navy text-white px-6 py-3.5 text-sm font-semibold flex items-center justify-center gap-2 transition-colors shrink-0 rounded-r-lg active:scale-[0.98] touch-manipulation md:min-h-[48px]"onClick={() => {navigate('/login')}} >
     <Search size={18} />
     <span>Search</span>
     </button>
