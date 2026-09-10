@@ -439,10 +439,10 @@ function Hero() {
     // Initialize typewriter effect
     const typed = new Typed(typedRef.current, {
       strings: [
-        'Search Bangalore',
-        'Search Kochi',
-        'Search Mangalore',
-        'Search Mysore'
+        'Bangalore',
+        'Kochi',
+        'Mangalore',
+        'Mysore'
       ],
       typeSpeed: 50,
       backSpeed: 30,
@@ -504,98 +504,27 @@ function Hero() {
     initial={{ opacity: 0, y: 30 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.3 }}
-    className="bg-white rounded-lg shadow-xl flex flex-col sm:flex-row items-stretch overflow-visible"
+    className="bg-white rounded-lg shadow-xl flex flex-col-2  justify-between overflow-visible"
     >
     {/* Tab Dropdown */}
-    <div className="hidden md:relative w-full sm:w-auto">
-    <button
-    onClick={() => setTabDropdownOpen(!tabDropdownOpen)}
-    className="flex items-center gap-2 px-4 py-3.5 text-sm font-semibold text-[#0078C8] hover:bg-[#F0F7FF] active:bg-[#E6F0FA] transition-colors w-full sm:w-auto sm:min-w-[100px] justify-between touch-manipulation min-h-[48px]"
-    >
-    <span className="truncate">{activeSearchTab}</span>
-    <ChevronDown size={14} className="shrink-0" />
-    </button>
-    {tabDropdownOpen && (
-      <div className="absolute top-full left-0 right-0 sm:right-auto mt-1 bg-white rounded-lg shadow-xl border border-[#E2E5EF] py-1 z-50 w-full sm:w-auto sm:min-w-[160px]">
-      {searchTabs.map((tab) => (
-        <button
-        key={tab}
-        onClick={() => {
-          setActiveSearchTab(tab);
-          setTabDropdownOpen(false);
-        }}
-        className={`block w-full text-left px-4 py-3 sm:py-2 text-sm transition-colors touch-manipulation ${
-          activeSearchTab === tab
-          ? 'text-[#0078C8] bg-[#F0F7FF] font-medium'
-          : 'text-[#1A1A2E] hover:bg-[#F5F7FA]'
-        }`}
-        >
-        {tab}
-        </button>
-      ))}
-      </div>
-    )}
-    </div>
 
-    {/* Mobile Divider */}
-    <div className="block sm:hidden h-px bg-[#E2E5EF] w-full" />
 
-    {/* Desktop Divider */}
-    <div className="hidden sm:block w-px bg-[#E2E5EF] self-stretch my-2" />
-
-    {/* Property Type Dropdown */}
-    <div className="hidden md:relative w-full sm:w-auto">
-    <button
-    onClick={() => setPropertyTypeOpen(!propertyTypeOpen)}
-    className="flex items-center gap-2 px-4 py-3.5 text-sm font-medium text-[#1A1A2E] hover:bg-[#F0F7FF] active:bg-[#F5F7FA] transition-colors w-full sm:w-auto sm:min-w-[160px] justify-between touch-manipulation min-h-[48px]"
-    >
-    <span className="truncate max-w-[200px] sm:max-w-none">{selectedPropertyType}</span>
-    <ChevronDown size={14} className="shrink-0" />
-    </button>
-    {propertyTypeOpen && (
-      <div className="absolute top-full left-0 right-0 sm:right-auto mt-1 bg-white rounded-lg shadow-xl border border-[#E2E5EF] py-1 z-50 w-full sm:w-auto sm:min-w-[220px] max-h-[60vh] overflow-y-auto">
-      <div className="px-3 py-1.5 text-xs font-semibold text-[#8B8BA3] uppercase tracking-wider">Residential</div>
-      {propertyTypes.map((type) => (
-        <button
-        key={type}
-        onClick={() => {
-          setSelectedPropertyType(type);
-          setPropertyTypeOpen(false);
-        }}
-        className={`block w-full text-left px-4 py-3 sm:py-2 text-sm transition-colors touch-manipulation ${
-          selectedPropertyType === type
-          ? 'text-[#0078C8] bg-[#F0F7FF] font-medium'
-          : 'text-[#1A1A2E] hover:bg-[#F5F7FA]'
-        }`}
-        >
-        {type}
-        </button>
-      ))}
-      </div>
-    )}
-    </div>
-
-    {/* Mobile Divider */}
-    <div className="block sm:hidden h-px bg-[#E2E5EF] w-full" />
-
-    {/* Desktop Divider */}
-    <div className="hidden sm:block w-px bg-[#E2E5EF] self-stretch my-2" />
 
     {/* Search Area */}
     <div
-    className="flex-1 flex items-center px-4 py-3.5 relative text-sm text-[#1A1A2E] min-h-[48px] cursor-pointer hover:bg-[#FAFBFC] transition-colors w-full active:bg-[#F5F7FA] touch-manipulation"
+    className="flex-1 flex items-center self-start px-4 py-3.5 relative text-sm text-[#1A1A2E] min-h-[48px] cursor-pointer hover:bg-[#FAFBFC] transition-colors w-full active:bg-[#F5F7FA] touch-manipulation"
     onClick={() => {
       // Trigger your search modal or focus a real input here
     }}
     >
     <MapPin size={16} className="text-[#8B8BA3] mr-2 shrink-0" />
-
+    <div className="font-body mr-2 mb-0.5 font-light truncate">Search</div>
 
     <span ref={typedRef} className="font-body mb-0.5 font-light truncate" />
     </div>
 
     {/* Search Button */}
-    <button className="bg-gold hover:bg-navy text-white px-6 py-3.5 text-sm font-semibold flex items-center justify-center gap-2 transition-colors shrink-0 rounded-r-lg active:scale-[0.98] touch-manipulation min-h-[48px]">
+    <button className="bg-gold hover:bg-navy text-white px-6 py-3.5 text-sm font-semibold flex items-center justify-center gap-2 transition-colors shrink-0 rounded-r-lg active:scale-[0.98] touch-manipulation md:min-h-[48px]">
     <Search size={18} />
     <span>Search</span>
     </button>
