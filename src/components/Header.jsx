@@ -52,7 +52,7 @@ const Header = () => {
       border border-white/[0.04]
       shadow-[0_8px_30px_rgba(0,0,0,0.35)]
       px-5 sm:px-6 ${
-        isFixed ? "bg-transparent backdrop-blur-2xl" : "bg-[#0d1117]"
+        isFixed ? "bg-transparent backdrop-blur-2xl" : "bg-[#1f2b49]"
       }
       `}
       >
