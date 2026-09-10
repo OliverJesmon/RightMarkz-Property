@@ -135,13 +135,14 @@ const Header = () => {
       {user ? (
         <Menu as="div" className="relative">
         <MenuButton
-        className="
+        className={`
         flex items-center justify-center
         w-9 h-9
         rounded-full
         MenuButton
         transition-all duration-200
-        "
+        ${isFixed ? "text-white" : "text-black"}
+        `}
         >
         <UserPlus className="w-[17px] h-[17px]" />
         </MenuButton>
