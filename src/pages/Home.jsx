@@ -525,7 +525,7 @@ function Hero() {
     </div>
 
     {/* Search Button */}
-    <button className="bg-gold hover:bg-navy text-white px-6 py-3.5 text-sm font-semibold flex items-center justify-center gap-2 transition-colors shrink-0 rounded-r-lg active:scale-[0.98] touch-manipulation md:min-h-[48px]"onClick={() => {navigate('/login')}} >
+    <button className="bg-gold hover:bg-navy text-white px-6 py-3.5 text-sm font-semibold flex items-center justify-center gap-2 transition-colors shrink-0 rounded-r-lg active:scale-[0.98] touch-manipulation md:min-h-[48px]"onClick={() => {navigate('/buy')}} >
     <Search size={18} />
     <span>Search</span>
     </button>
