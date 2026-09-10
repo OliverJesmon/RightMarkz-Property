@@ -200,13 +200,16 @@ const Header = () => {
                     {item.label}
                   </Link>
                 ))}
-                <Link
-                to="/postproperty"
-                className="block px-2 py-2 ml-3 font-accent font-medium text-sm uppercase rounded-lg hover:bg-yellow-300 transition-colors"
-                >
-                <span>Post property</span>
+                {user ? (
+                  <Link
+                  to="/postproperty"
+                  className="flex items-center gap-2 px-4 py-2 bg-gold text-white text-sm font-medium rounded-lg hover:bg-yellow-300 transition-colors"
+                  >
+                  <span>Post property</span>
 
-                </Link>
+                  </Link>
+
+                ):(<></>)}
                 <a href="https://rmattend.lovable.app/" className={`block px-4 py-2 font-accent font-medium text-sm uppercase tracking-wide transition-colors duration-300 text-navy hover:text-gold hover:bg-gray-50`}>
 
                 </a>

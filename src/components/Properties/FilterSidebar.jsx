@@ -202,7 +202,7 @@ export default function FilterSidebar({ onFilterChange, isRes }) {
     return (
         <>
         {/* Mobile Filter Button */}
-        <div className="lg:hidden mb-4">
+        <div className="lg:hidden w-7 h-7 z-10 fixed md:block md:z-0 mb-4">
         <button
         onClick={() => setIsOpen(true)}
         className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"

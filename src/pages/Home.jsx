@@ -439,10 +439,10 @@ function Hero() {
     // Initialize typewriter effect
     const typed = new Typed(typedRef.current, {
       strings: [
-        'Bangalore',
-        'Kochi',
-        'Mangalore',
-        'Mysore'
+        'Search Bangalore',
+        'Search Kochi',
+        'Search Mangalore',
+        'Search Mysore'
       ],
       typeSpeed: 50,
       backSpeed: 30,
@@ -507,16 +507,16 @@ function Hero() {
     className="bg-white rounded-lg shadow-xl flex flex-col sm:flex-row items-stretch overflow-visible"
     >
     {/* Tab Dropdown */}
-    <div className="relative">
+    <div className="hidden md:relative w-full sm:w-auto">
     <button
     onClick={() => setTabDropdownOpen(!tabDropdownOpen)}
-    className="flex items-center gap-2 px-4 py-3.5 text-sm font-semibold text-[#0078C8] hover:bg-[#F0F7FF] transition-colors min-w-[100px] justify-between"
+    className="flex items-center gap-2 px-4 py-3.5 text-sm font-semibold text-[#0078C8] hover:bg-[#F0F7FF] active:bg-[#E6F0FA] transition-colors w-full sm:w-auto sm:min-w-[100px] justify-between touch-manipulation min-h-[48px]"
     >
-    <span>{activeSearchTab}</span>
-    <ChevronDown size={14} />
+    <span className="truncate">{activeSearchTab}</span>
+    <ChevronDown size={14} className="shrink-0" />
     </button>
     {tabDropdownOpen && (
-      <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl border border-[#E2E5EF] py-1 z-50 min-w-[160px]">
+      <div className="absolute top-full left-0 right-0 sm:right-auto mt-1 bg-white rounded-lg shadow-xl border border-[#E2E5EF] py-1 z-50 w-full sm:w-auto sm:min-w-[160px]">
       {searchTabs.map((tab) => (
         <button
         key={tab}
@@ -524,7 +524,7 @@ function Hero() {
           setActiveSearchTab(tab);
           setTabDropdownOpen(false);
         }}
-        className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
+        className={`block w-full text-left px-4 py-3 sm:py-2 text-sm transition-colors touch-manipulation ${
           activeSearchTab === tab
           ? 'text-[#0078C8] bg-[#F0F7FF] font-medium'
           : 'text-[#1A1A2E] hover:bg-[#F5F7FA]'
@@ -537,20 +537,23 @@ function Hero() {
     )}
     </div>
 
-    {/* Divider */}
+    {/* Mobile Divider */}
+    <div className="block sm:hidden h-px bg-[#E2E5EF] w-full" />
+
+    {/* Desktop Divider */}
     <div className="hidden sm:block w-px bg-[#E2E5EF] self-stretch my-2" />
 
     {/* Property Type Dropdown */}
-    <div className="relative">
+    <div className="hidden md:relative w-full sm:w-auto">
     <button
     onClick={() => setPropertyTypeOpen(!propertyTypeOpen)}
-    className="flex items-center gap-2 px-4 py-3.5 text-sm font-medium text-[#1A1A2E] hover:bg-[#F0F7FF] transition-colors min-w-[160px] justify-between"
+    className="flex items-center gap-2 px-4 py-3.5 text-sm font-medium text-[#1A1A2E] hover:bg-[#F0F7FF] active:bg-[#F5F7FA] transition-colors w-full sm:w-auto sm:min-w-[160px] justify-between touch-manipulation min-h-[48px]"
     >
-    <span className="truncate">{selectedPropertyType}</span>
+    <span className="truncate max-w-[200px] sm:max-w-none">{selectedPropertyType}</span>
     <ChevronDown size={14} className="shrink-0" />
     </button>
     {propertyTypeOpen && (
-      <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl border border-[#E2E5EF] py-1 z-50 min-w-[220px]">
+      <div className="absolute top-full left-0 right-0 sm:right-auto mt-1 bg-white rounded-lg shadow-xl border border-[#E2E5EF] py-1 z-50 w-full sm:w-auto sm:min-w-[220px] max-h-[60vh] overflow-y-auto">
       <div className="px-3 py-1.5 text-xs font-semibold text-[#8B8BA3] uppercase tracking-wider">Residential</div>
       {propertyTypes.map((type) => (
         <button
@@ -559,7 +562,7 @@ function Hero() {
           setSelectedPropertyType(type);
           setPropertyTypeOpen(false);
         }}
-        className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
+        className={`block w-full text-left px-4 py-3 sm:py-2 text-sm transition-colors touch-manipulation ${
           selectedPropertyType === type
           ? 'text-[#0078C8] bg-[#F0F7FF] font-medium'
           : 'text-[#1A1A2E] hover:bg-[#F5F7FA]'
@@ -572,31 +575,29 @@ function Hero() {
     )}
     </div>
 
-    {/* Divider */}
+    {/* Mobile Divider */}
+    <div className="block sm:hidden h-px bg-[#E2E5EF] w-full" />
+
+    {/* Desktop Divider */}
     <div className="hidden sm:block w-px bg-[#E2E5EF] self-stretch my-2" />
 
-    {/* Search Input
-    <div className="flex-1 flex items-center px-4 relative">
+    {/* Search Area */}
+    <div
+    className="flex-1 flex items-center px-4 py-3.5 relative text-sm text-[#1A1A2E] min-h-[48px] cursor-pointer hover:bg-[#FAFBFC] transition-colors w-full active:bg-[#F5F7FA] touch-manipulation"
+    onClick={() => {
+      // Trigger your search modal or focus a real input here
+    }}
+    >
     <MapPin size={16} className="text-[#8B8BA3] mr-2 shrink-0" />
-    <input
-    type="text"
-    placeholder="Search 'Noida'"
-    value={searchValue}
-    onChange={(e) => setSearchValue(e.target.value)}
-    className="flex-1 py-3.5 text-sm text-[#1A1A2E] placeholder-[#8B8BA3] bg-transparent outline-none"
-    />
 
+
+    <span ref={typedRef} className="font-body mb-0.5 font-light truncate" />
     </div>
-    */}
-    <div className="flex-1 flex items-center px-4 relative text-sm text-[#1A1A2E]">
-    <MapPin size={16} className="text-[#8B8BA3] mr-2 shrink-0" />
-    Search
-    <span className='ml-2 '></span>
-    <span ref={typedRef} className="font-body mb-0.5 font-light" />
-    </div>
-    <button className="bg-gold hover:bg-navy text-white px-6 py-3.5 text-sm font-semibold flex items-center justify-center gap-2 transition-colors shrink-0 sm:rounded-r-lg">
+
+    {/* Search Button */}
+    <button className="bg-gold hover:bg-navy text-white px-6 py-3.5 text-sm font-semibold flex items-center justify-center gap-2 transition-colors shrink-0 rounded-r-lg active:scale-[0.98] touch-manipulation min-h-[48px]">
     <Search size={18} />
-    <span className="hidden sm:inline">Search</span>
+    <span>Search</span>
     </button>
     </motion.div>
 
