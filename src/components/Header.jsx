@@ -36,188 +36,501 @@ const Header = () => {
       {/* Spacer to maintain layout when navbar becomes fixed */}
       {isFixed && <div className="h-20"></div>}
       
-      <header className={`${
-        isFixed 
-          ? 'fixed top-0 left-0 right-0 z-50 nav-blur shadow-lg' 
-          : 'relative bg-transparent'
-      } transition-all duration-300`}>
-        <div className="container-custom">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gold rounded-lg flex items-center justify-center">
-                <span className="text-white font-display font-bold text-xl">RM</span>
-              </div>
-              <div>
-                <h1 className="font-display font-bold text-xl text-gold">RightMarkz</h1>
-                <p className={`${isFixed? 'text-white':'text-navy'} text-xs font-accent`}>Property Portal</p>
-              </div>
+      <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isFixed ? "opacity-100" : "opacity-100"
+      }`}
+      >
+      <div className="w-full px-4 sm:px-6 lg:px-8 pt-1">
+      <div
+      className={`
+      mx-auto
+      max-w-[1112px]
+      h-[56px]
+      rounded-[17px]
+
+      border border-white/[0.04]
+      shadow-[0_8px_30px_rgba(0,0,0,0.35)]
+      px-5 sm:px-6 ${
+        isFixed ? "bg-transparent backdrop-blur-2xl" : "bg-[#0d1117]"
+      }
+      `}
+      >
+      <div className="h-full flex items-center justify-between">
+
+      {/* Logo */}
+      <Link
+      to="/"
+      className="flex items-center gap-2.5 shrink-0 group"
+      >
+      {/* Aero-style logo mark */}
+      <div className="w-9 h-9 bg-gold rounded-lg flex items-center justify-center">
+      <span className="text-white font-display font-bold text-xl">RM</span>
+      </div>
+
+      <span
+      className="
+      text-white
+      text-[15px]
+      font-semibold
+      tracking-[-0.02em]
+      "
+      >
+      RightMarkz
+      </span>
+      </Link>
+
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex items-center gap-7 lg:gap-8 ml-10">
+      {navItems.map((item) => {
+        const isActive = location.pathname === item.path;
+
+        return (
+          <Link
+          key={item.path}
+          to={item.path}
+          className={`
+            relative
+            text-[13px]
+            font-medium
+            tracking-[-0.01em]
+            transition-colors
+            duration-200
+            whitespace-nowrap
+            ${
+              isActive
+              ? "text-white"
+              : "text-gold hover:text-[#8d949e]"
+            }
+            `}
+            >
+            {item.label}
+
+            {/* Active underline */}
+            <span
+            className={`
+              absolute
+              -bottom-[7px]
+              left-0
+              h-[1px]
+              bg-white
+              transition-all
+              duration-200
+              ${
+                isActive
+                ? "w-full opacity-100"
+                : "w-0 opacity-0 group-hover:w-full"
+              }
+              `}
+              />
+              </Link>
+        );
+      })}
+      </nav>
+
+      {/* Right side */}
+      <div className="hidden md:flex items-center gap-3 ml-auto">
+
+      {/* User */}
+      {user ? (
+        <Menu as="div" className="relative">
+        <MenuButton
+        className="
+        flex items-center justify-center
+        w-9 h-9
+        rounded-full
+        MenuButton
+        transition-all duration-200
+        "
+        >
+        <UserPlus className="w-[17px] h-[17px]" />
+        </MenuButton>
+
+
+        <MenuItems
+        transition
+        className="
+        absolute right-0 mt-2
+        w-56
+        origin-top-right
+        rounded-xl
+        bg-[#151a21]
+        border border-white/[0.06]
+        shadow-2xl
+        outline-none
+        overflow-hidden
+        transition
+        data-closed:scale-95
+        data-closed:opacity-0
+        data-enter:duration-100
+        data-leave:duration-75
+        "
+        >
+        <div className="py-1">
+        <MenuItem>
+        <span
+        className="
+        block px-4 py-3
+        text-sm
+        text-[#9da4ae]
+        border-b border-white/[0.05]
+        "
+        >
+        Hello {user.name}
+        </span>
+        </MenuItem>
+
+        {pid.length != 0 && (
+          <MenuItem>
+          <Link to="/track">
+          <button
+          type="button"
+          className="
+          block w-full
+          px-4 py-2.5
+          text-left text-sm
+          text-[#b6bcc5]
+          hover:text-white
+          hover:bg-white/[0.05]
+          transition-colors
+          "
+          >
+          Listed Properties
+          </button>
+          </Link>
+          </MenuItem>
+        )}
+
+        <MenuItem>
+        <button
+        type="button"
+        onClick={logout}
+        className="
+        block w-full
+        px-4 py-2.5
+        text-left text-sm
+        text-[#b6bcc5]
+        hover:text-white
+        hover:bg-white/[0.05]
+        transition-colors
+        "
+        >
+        Logout
+        </button>
+        </MenuItem>
+        </div>
+        </MenuItems>
+        </Menu>
+      ) : (
+        <Menu as="div" className="relative">
+        <MenuButton
+        className="
+        flex items-center justify-center
+        w-9 h-9
+        rounded-full
+        text-[#a5abb4]
+        hover:text-white
+        hover:bg-white/[0.06]
+        transition-all duration-200
+        "
+        >
+        <UserPlus className="w-[17px] h-[17px]" />
+        </MenuButton>
+
+        <MenuItems
+        transition
+        className="
+        absolute right-0 mt-2
+        w-44
+        origin-top-right
+        rounded-xl
+        bg-[#151a21]
+        border border-white/[0.06]
+        shadow-2xl
+        outline-none
+        overflow-hidden
+        transition
+        data-closed:scale-95
+        data-closed:opacity-0
+        "
+        >
+        <div className="p-1.5">
+        <MenuItem>
+        <Link
+        to="/login"
+        className="
+        block px-3 py-2.5
+        rounded-lg
+        text-sm text-[#b6bcc5]
+        hover:text-white
+        hover:bg-white/[0.05]
+        "
+        >
+        Login
+        </Link>
+        </MenuItem>
+
+        <MenuItem>
+        <Link
+        to="/signup"
+        className="
+        block px-3 py-2.5
+        rounded-lg
+        text-sm text-[#b6bcc5]
+        hover:text-white
+        hover:bg-white/[0.05]
+        "
+        >
+        Sign Up
+        </Link>
+        </MenuItem>
+        </div>
+        </MenuItems>
+        </Menu>
+      )}
+
+      {/* CTA */}
+      {user && (
+        <Link
+        to="/postproperty"
+        className="
+        h-9
+        px-4
+        rounded-full
+        bg-white
+        text-[#171b21]
+        flex items-center
+        text-[13px]
+        font-semibold
+        whitespace-nowrap
+        transition-all
+        duration-200
+        hover:bg-[#e8eaed]
+        hover:scale-[1.02]
+        active:scale-[0.98]
+        "
+        >
+        Post property
+        </Link>
+      )}
+
+      {/* If you want the exact reference CTA instead */}
+      {/*
+        <a
+        href="https://rmattend.lovable.app/"
+        className="
+        h-9 px-5 rounded-full bg-white
+        text-[#171b21] text-[13px] font-semibold
+        flex items-center gap-2
+        hover:bg-[#e8eaed] transition-all
+        "
+        >
+        Open Webapp
+        <span className="text-base">↗</span>
+        </a>
+        */}
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+        className="
+        md:hidden
+        flex items-center justify-center
+        w-9 h-9
+        rounded-full
+        text-[#a5abb4]
+        hover:text-white
+        hover:bg-white/[0.06]
+        "
+        onClick={() =>
+          setIsMobileMenuOpen(!isMobileMenuOpen)
+        }
+        >
+        <svg
+        className="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        >
+        {isMobileMenuOpen ? (
+          <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.8}
+          d="M6 6l12 12M18 6L6 18"
+          />
+        ) : (
+          <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.8}
+          d="M4 6h16M4 12h16M4 18h16"
+          />
+        )}
+        </svg>
+        </button>
+        </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div
+          className="
+          md:hidden
+          mx-auto
+          max-w-[1112px]
+          mt-2
+          rounded-2xl
+          bg-navy
+          border border-navy
+          shadow-2xl
+          overflow-hidden
+          "
+          >
+          <nav className="p-2">
+          {navItems.map((item) => {
+            const isActive = location.pathname === item.path;
+
+            return (
+              <Link
+              key={item.path}
+              to={item.path}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`
+                block
+                px-4 py-3
+                rounded-xl
+                text-sm
+                font-medium
+                transition-colors
+                ${
+                  isActive
+                  ? "text-white bg-white/[0.06]"
+                  : "text-[#8d949e] hover:text-white hover:bg-white/[0.04]"
+                }
+                `}
+                >
+                {item.label}
+                </Link>
+            );
+          })}
+
+          {user ? (<>
+            <Link
+            to="/postproperty"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="
+            mt-2
+            block
+            px-4 py-3
+            rounded-xl
+            bg-white
+            text-[#171b21]
+            text-sm
+            font-semibold
+            text-center
+            "
+            >
+            Post property
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8 ">
+            {/* <span
+            className="
+            px-4 py-3
+            text-sm
+            text-[#9da4ae]
 
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`${isFixed? 'text-white':'text-navy'} font-accent font-medium text-sm  uppercase tracking-wide transition-all duration-300 relative group ${
-                    location.pathname === item.path
-                      ? 'text-gold'
-                      : 'text-navy hover:text-gold'
-                  }`}
-                >
-                  {item.label}
-                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gold transform transition-transform duration-300 ${
-                    location.pathname === item.path
-                      ? 'scale-x-100'
-                      : 'scale-x-0 group-hover:scale-x-100'
-                  }`} />
-                </Link>
-              ))}
-             {user ? (
-              <Link
-              to="/postproperty"
-              className="flex items-center gap-2 px-4 py-2 bg-gold text-white text-sm font-medium rounded-lg hover:bg-yellow-300 transition-colors"
-              >
-              <span>Post property</span>
-
-              </Link>
-
-            ):(<></>)}
+            "
+            >
+            Hello {user.name}
+            </span> */}
 
 
-            </nav>
+            {pid.length != 0 && (
 
-            {user ? (<Menu as="div" className="relative inline-block">
-              <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-gold inset-ring-1 inset-ring-white/5 hover:bg-white/20">
-              <UserPlus />
-              </MenuButton>
-
-              <MenuItems
-              transition
-              className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-800 outline-1 -outline-offset-1 outline-white/10 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
-              >
-              <div className="py-1">
-
-              <MenuItem>
-              <span
-              className="block w-full px-4 py-2 text-left text-sm text-gold data-[focus]:bg-navy"
-              >Hello {user.name}</span>
-              </MenuItem>
-              {(pid.length === 0) ?(<MenuItem>
-              <Link to='/track'>
+              <Link to="/track">
               <button
               type="button"
-              className="block w-full px-4 py-2 text-left text-sm text-gold data-[focus]:bg-navy"
+              className="
+              mt-2
+              block
+              px-4 py-3
+              rounded-xl
+              bg-white
+              text-[#171b21]
+              text-sm
+              font-semibold
+              text-center
+              "
               >
               Listed Properties
-
-
               </button>
               </Link>
 
-              </MenuItem>):(<></>)}
-              <MenuItem>
-              <button
-              type="button"
-              className="block w-full px-4 py-2 text-left text-sm text-gold data-[focus]:bg-navy"
-              onClick={logout}
-              >
+            )}
 
-              Logout
 
-              </button>
-
-              </MenuItem>
-              </div>
-              </MenuItems>
-              </Menu>):( <Menu as="div" className="relative inline-block">
-            <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-gold inset-ring-1 inset-ring-white/5 hover:bg-white/20">
-            <UserPlus />
-            </MenuButton>
-
-            <MenuItems
-            transition
-            className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-800 outline-1 -outline-offset-1 outline-white/10 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
-            >
-            <div className="py-1">
-            <MenuItem>
-            <Link to='/login'>
             <button
             type="button"
-            className="block w-full px-4 py-2 text-left text-sm text-gold data-[focus]:bg-navy"
+            onClick={logout}
+            className="
+            mt-2
+            block
+            px-4 py-3
+            rounded-xl
+            bg-white
+            text-[#171b21]
+            text-sm
+            font-semibold
+            text-center
+            "
+            >
+            Logout
+            </button>
+            </>
+          ):(
+            <>
+            <Link
+            to="/login"
+            className="
+            mt-2
+            block
+            px-4 py-3
+            rounded-xl
+            bg-white
+            text-[#171b21]
+            text-sm
+            font-semibold
+            text-center
+            "
             >
             Login
-            </button>
             </Link>
-            </MenuItem>
-            <MenuItem>
-            <Link to='/signup'>
-            <button
-            type="button"
-            className="block w-full px-4 py-2 text-left text-sm text-gold data-[focus]:bg-navy"
 
+            <Link
+            to="/signup"
+            className="
+            mt-2
+            block
+            px-4 py-3
+            rounded-xl
+            bg-white
+            text-[#171b21]
+            text-sm
+            font-semibold
+            text-center
+            "
             >
             Sign Up
-
-            </button>
             </Link>
-            </MenuItem>
-            </div>
-            </MenuItems>
-            </Menu>)}
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden text-navy"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-               
-              </svg>
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            
-            <div className="md:hidden bg-white border-t border-gray-200">
-              <nav className="py-4 space-y-2">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className={`block px-4 py-2 font-accent font-medium text-sm uppercase tracking-wide transition-colors duration-300 ${
-                      location.pathname === item.path
-                        ? 'text-gold bg-gold bg-opacity-10'
-                        : 'text-navy hover:text-gold hover:bg-gray-50'
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                {user ? (
-                  <Link
-                  to="/postproperty"
-                  className="flex items-center gap-2 px-4 py-2 bg-gold text-white text-sm font-medium rounded-lg hover:bg-yellow-300 transition-colors"
-                  >
-                  <span>Post property</span>
-
-                  </Link>
-
-                ):(<></>)}
-                <a href="https://rmattend.lovable.app/" className={`block px-4 py-2 font-accent font-medium text-sm uppercase tracking-wide transition-colors duration-300 text-navy hover:text-gold hover:bg-gray-50`}>
-
-                </a>
-              </nav>
-            </div>
+            </>
           )}
+          </nav>
+          </div>
+        )}
         </div>
-      </header>
+        </header>
+
     </>
   )
 }
