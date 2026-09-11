@@ -142,14 +142,14 @@ const Footer = () => {
               © {currentYear} RightMarkz. All rights reserved.
             </p>
 
-            <div className="flex space-x-6 mt-4 md:mt-0">
+           {/* <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="/privacy" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">
                 Privacy Policy
               </Link>
               <Link to="/terms" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">
                 Terms of Service
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

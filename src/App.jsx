@@ -71,10 +71,6 @@ function App() {
           <Route path='/forgotpassword' element={<ValidatePass/>} />
           <Route path='/reset/:id' element={<Reset/>}/>
         </Routes>
-
-
-
-
       <Footer />
       </AuthProvider>
 
