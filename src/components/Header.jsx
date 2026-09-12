@@ -451,6 +451,7 @@ const Header = () => {
 
               <Link to="/track">
               <button
+              onClick={() => setIsMobileMenuOpen(false)}
               type="button"
               className="
               mt-2
@@ -473,7 +474,7 @@ const Header = () => {
 
             <button
             type="button"
-            onClick={logout}
+            onClick={() =>{logout();setIsMobileMenuOpen(false);}}
             className="
             mt-2
             block
@@ -504,6 +505,7 @@ const Header = () => {
             font-semibold
             text-center
             "
+            onClick={() => setIsMobileMenuOpen(false)}
             >
             Login
             </Link>
@@ -521,6 +523,7 @@ const Header = () => {
             font-semibold
             text-center
             "
+            onClick={() => setIsMobileMenuOpen(false)}
             >
             Sign Up
             </Link>

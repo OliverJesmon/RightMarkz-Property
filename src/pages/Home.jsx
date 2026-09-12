@@ -558,6 +558,7 @@ function Hero() {
 
 
 const Homepage = () => {
+  console.log(navigator.userAgent);
   return (
     <>
     <Hero />
